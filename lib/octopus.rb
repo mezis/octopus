@@ -11,7 +11,7 @@ module Octopus
   end
 
   def self.config()
-    @config ||= HashWithIndifferentAccess.new(YAML.load(ERB.new(File.open(Octopus.directory() + "/config/shards.yml").read()).result))[Octopus.env()]
+    @config ||= HashWithIndifferentAccess.new(YAML.load(ERB.new(File.read(Octopus.directory() + "/config/shards.yml")).result))[Octopus.env()]
 
     if @config && @config['environments']
       self.environments = @config['environments']
